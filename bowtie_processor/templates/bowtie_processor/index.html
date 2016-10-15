@@ -1,0 +1,42 @@
+<html>
+	<body onload="getLocation()">
+		<h1>Hello World!</h1>
+		<form action="/process/" method="POST" enctype="multipart/form-data">
+	  		{% csrf_token%}
+		  	<input type="file" name="raw_image" accept="image/*"><br>
+		  	<input type="hidden" id="lat_image" name="lat">
+		  	<input type="hidden" id="lng_image" name="lng">
+		  	<input type="submit">
+  		</form>
+  		<br>
+  		<br>
+  		<form action="/process_text/" method="POST">
+	  		{% csrf_token%}
+		  	<input type="text" name="search"><br>
+		  	<input type="hidden" id="lat_text" name="lat">
+		  	<input type="hidden" id="lng_text" name="lng">
+		  	<input type="submit">
+  		</form>
+  		<label id="position"></label>
+
+  	<script type="text/javascript">
+
+  		var x = document.getElementById("position");
+		function getLocation() {
+		    if (navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(showPosition);
+		    } else {
+		        x.innerHTML = "Geolocation is not supported by this browser.";
+		    }
+		}
+		function showPosition(position) {
+		    x.innerHTML = "Latitude: " + position.coords.latitude + 
+		    "<br>Longitude: " + position.coords.longitude;
+		    document.getElementById("lat_image").value = position.coords.latitude;
+		    document.getElementById("lng_image").value = position.coords.longitude;
+		    document.getElementById("lat_text").value = position.coords.latitude;
+		    document.getElementById("lng_text").value = position.coords.longitude;
+		}
+  	</script>
+	</body>
+</html>
