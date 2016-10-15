@@ -11,7 +11,10 @@
 		var
 		mapObject,
 		markers = [],
-		
+		markersData = {
+
+		};
+
 			var mapOptions = {
 				zoom: 13,
 				center: new google.maps.LatLng(48.865633, 2.321236),

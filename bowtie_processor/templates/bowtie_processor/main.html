@@ -1,198 +1,225 @@
-<!DOCTYPE html>
-<html>
-{% load static %}
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
-    <meta name="author" content="Ansonika">
-    <title>RUKSAK - City Guide For Everyone</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <!-- Favicons-->
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'img/apple-touch-icon-57x57-precomposed.png' %}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{% static 'img/apple-touch-icon-72x72-precomposed.png' %}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{% static 'img/apple-touch-icon-114x114-precomposed.png' %}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{% static 'img/apple-touch-icon-144x144-precomposed.png' %}">
-
-    <!-- CSS -->
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
-    
-    <!-- Google web fonts -->
-   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-   <link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
-   <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+{% extends 'bowtie_processor/base.html' %}
+{% block content %}
+{% load staticfiles %}
+<div class="container-fluid full-height">
+    <div class="row row-height">
+        <div class="col-md-7 content-left">
         
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-    
-    <style>html, body {height: 100%;}</style>
-        
-</head>
-<body>
 
-<!--[if lte IE 8]>
-    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
-<![endif]-->
+            {% for entry in stores %}
+                <div class="col-md-6 col-sm-6">
+                    <div class="tour_container">
+                        <div class="img_container">
+                            <a href="single_restaurant.html">
+                            {% if entry.photo %}
+                                <img src="{{ entry.photo }}" width="800" height="533" class="img-responsive" alt="Image">
+                            {% else %}
+                                <img src="{% static 'img/not_available.jpg' %}" width="800" height="533" class="img-responsive" alt="Image">
+                            {% endif %}
+                            <div class="short_info">
+                                <i class="icon_set_3_restaurant-2"></i> Fast food
+                                <!-- <span class="price"><sup>$</sup>45</span> -->
+                            </div>
+                            </a>
+                        </div>
+                        <div class="tour_title">
+                            <h3><strong>{{entry.name}}</strong></h3>
+                            <div class="rating">
+                                Address: {{entry.address}}
+                            </div><!-- end rating -->
+                            <div class="rating">
+                                Rating: {{entry.rating}}/5
+                            </div><!-- end rating -->
+                            <div onclick="onHtmlClick('Fastfood', 0)" class="view_on_map">View on map</div>
+                        </div>
+                    </div><!-- End box tour -->
+                </div>
+                 
+            {% endfor %}
 
-    <div id="preloader">
-        <div class="sk-spinner sk-spinner-wave">
-            <div class="sk-rect1"></div>
-            <div class="sk-rect2"></div>
-            <div class="sk-rect3"></div>
-            <div class="sk-rect4"></div>
-            <div class="sk-rect5"></div>
+
+        </div>
+
+
+        <div class="col-md-5 map-right hidden-sm hidden-xs">
+            <div class="map" id="map" style="width:100%; height:100%"></div>
         </div>
     </div>
-    <!-- End Preload -->
+</div>
 
-    <div class="layer"></div>
-    <!-- Mobile menu overlay mask -->
+<script type="text/javascript">
+    var latitude = 0;
+    var longitude = 0;
+    var map;
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+    function showPosition(position) {
+        document.getElementById("lat_image").value = position.coords.latitude;
+        document.getElementById("lng_image").value = position.coords.longitude;
+        document.getElementById("lat_text").value = position.coords.latitude;
+        document.getElementById("lng_text").value = position.coords.longitude;
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
 
-    <!-- Header Plain:  add the id plain to header and change logo.png to logo_sticky.png ======================= -->
-    <header id="plain" style="border-bottom:1px solid #ddd">
-        <div id="top_line">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6"><i class="tagline"></i><strong>RUKSAK - City Guide For Everyone</strong></div>
-                                </div><!-- End Dropdown access -->
-                            </li>
-                        </ul>
-                    </div>
-                </div><!-- End row -->
-            </div><!-- End container-->
-        </div><!-- End top line-->
+        var myLatLng = {lat: latitude, lng: longitude};
+        var mapOptions = {
+                zoom: 13,
+                center: myLatLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+                mapTypeControl: false,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                    position: google.maps.ControlPosition.LEFT_CENTER
+                },
+                panControl: false,
+                panControlOptions: {
+                    position: google.maps.ControlPosition.TOP_RIGHT
+                },
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.LARGE,
+                    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                },
+                 scrollwheel: false,
+                scaleControl: false,
+                scaleControlOptions: {
+                    position: google.maps.ControlPosition.LEFT_CENTER
+                },
+                streetViewControl: true,
+                streetViewControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                },
+                styles: [
+                                             {
+                    "featureType": "landscape",
+                    "stylers": [
+                        {
+                            "hue": "#FFBB00"
+                        },
+                        {
+                            "saturation": 43.400000000000006
+                        },
+                        {
+                            "lightness": 37.599999999999994
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "stylers": [
+                        {
+                            "hue": "#FFC200"
+                        },
+                        {
+                            "saturation": -61.8
+                        },
+                        {
+                            "lightness": 45.599999999999994
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "stylers": [
+                        {
+                            "hue": "#FF0300"
+                        },
+                        {
+                            "saturation": -100
+                        },
+                        {
+                            "lightness": 51.19999999999999
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "stylers": [
+                        {
+                            "hue": "#FF0300"
+                        },
+                        {
+                            "saturation": -100
+                        },
+                        {
+                            "lightness": 52
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "stylers": [
+                        {
+                            "hue": "#0078FF"
+                        },
+                        {
+                            "saturation": -13.200000000000003
+                        },
+                        {
+                            "lightness": 2.4000000000000057
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "stylers": [
+                        {
+                            "hue": "#00FF6A"
+                        },
+                        {
+                            "saturation": -1.0989010989011234
+                        },
+                        {
+                            "lightness": 11.200000000000017
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                }
+                ]
+            };
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        {% for entry in stores %}
+
+            var myLatLng = {lat: {{entry.lat}}, lng: {{entry.lng}} };
+            var marker = new google.maps.Marker({
+              position: myLatLng,
+              map: map,
+              title: '{{entry.name}}'
+            });
+
+        {% endfor %}
         
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-3">
-                     <div id="title">
-                        <h1><a href="#" title="City tours travel template">RUKSAK</a></h1>
-                    </div>
-                </div>
-                <nav class="col-md-9 col-sm-9 col-xs-9">
-                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
-                    <div class="main-menu">
-                        <div id="header_menu">
-                        </div>
-                        <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
-                        <ul>
-                        </ul>
-                    </div><!-- End main-menu -->
-                    <ul id="top_tools">
-                        <li>
-                            <div class="dropdown dropdown-search">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-search"></i></a>
-                                <div class="dropdown-menu">
-                                    <form>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Find what you need...">
-                                            <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" style="margin-left:0;">
-                                            <i class="icon-search"></i>
-                                            </button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="dropdown dropdown-cart">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-camera-1"></i>Take a Photo</a>
-                                <ul class="dropdown-menu">
-                                    <form action="demo_form.asp">
-                                    <input type="file" name="pic" accept="image/*">
-                                    <input type="submit">
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div><!-- container -->
-    </header><!-- End Header -->
+    }
 
-    <div class="container-fluid full-height">
-        <div class="row row-height">
-            <div class="col-md-7 content-left">
-            
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="tour_container">
-                            <div class="img_container">
-                                <a href="single_restaurant.html">
-                                <img src="{% static 'img/restaurant_box_1.jpg' %}" width="800" height="533" class="img-responsive" alt="Image">
-                                <div class="ribbon top_rated"></div>
-                                <div class="short_info">
-                                    <i class="icon_set_3_restaurant-2"></i> Fast food<span class="price"><sup>$</sup>45</span>
-                                </div>
-                                </a>
-                            </div>
-                            <div class="tour_title">
-                                <h3><strong>King Food</strong></h3>
-                                <div class="rating">
-                                    <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-                                </div><!-- end rating -->
-                                <div class="wishlist">
-                                    <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                </div><!-- End wish list-->
-                                <div onclick="onHtmlClick('Fastfood', 0)" class="view_on_map">View on map</div>
-                            </div>
-                        </div><!-- End box tour -->
-                    </div><!-- End col-md-6 -->
-                    
-                    <div class="col-md-6 col-sm-6">
-                        <div class="tour_container">
-                            <div class="img_container">
-                                <a href="single_restaurant.html">
-                                <img src="{% static 'img/restaurant_box_2.jpg' %}"" width="800" height="533" class="img-responsive" alt="Image">
-                                <div class="ribbon top_rated"></div>
-                                <div class="short_info">
-                                    <i class="icon_set_3_restaurant-2"></i> Fast food<span class="price"><sup>$</sup>45</span>
-                                </div>
-                                </a>
-                            </div>
-                            <div class="tour_title">
-                                <h3><strong>Catrine</strong></h3>
-                                <div class="rating">
-                                    <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-                                </div><!-- end rating -->
-                                <div class="wishlist">
-                                    <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                </div><!-- End wish list-->
-                                <div onclick="onHtmlClick('Fastfood', 1)" class="view_on_map">View on map</div>
-                            </div>
-                        </div><!-- End box tour -->
-                    </div><!-- End col-md-6 -->
-                </div><!-- End row -->  
-            </div>
-            <div class="col-md-5 map-right hidden-sm hidden-xs">
-                <div class="map" id="map" style="width:100%; height:100%"></div>
-            </div>
-        </div>
-            
-            
-            
-    <hr>
+    function setCenter() {
+        
+    }
 
-            <!-- <div class="col-md-5 map-right hidden-sm hidden-xs">
-                <div class="map" id="map" style="width:100%; height:100%"></div>
-            </div> -->
+    
+</script>
 
- 
- <!-- Common scripts -->
-<script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
-<script src="{% static 'js/common_scripts_min.js' %}"></script>
-<script src="{% static 'js/functions.js' %}"></script>
- <!-- Map -->
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBJ2G9CadzNbX_DV8uuuY2GE-7yq0rENPk&libraries=places"></script>
-<script src="{% static 'js/map_listing_restaurants.js' %}"></script>
-<script src="{% static 'js/infobox.js' %}"></script>
-
-</body>
-</html>
+{% endblock %}

@@ -1,3 +1,6 @@
+
+import time
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 from django.http import JsonResponse
@@ -23,12 +26,19 @@ def process(request):
 		classified_image = processor.run(raw_image)
 
 		maps = GoogleMapsProcessor()
+		response = {}
+
 		response = maps.search(classified_image[0].get('word'), 
 			{'lat':latitude, 'lng':longitude}
 			)
+
 		
+		data = {
+			'stores': response
+		}
+
 		if response:
-			return JsonResponse(response, safe=False)
+			return render(request, 'bowtie_processor/main.html', data)
 		else:
 			return HttpResponse(400)
 	else:
@@ -52,8 +62,12 @@ def process_text(request):
 			{'lat':latitude, 'lng':longitude}
 			)
 
+		data = {
+			'stores': response
+		}
+
 		if response:
-			return JsonResponse(response, safe=False)
+			return render(request, 'bowtie_processor/main.html', data)
 		else:
 			return HttpResponse(400)
 	else:

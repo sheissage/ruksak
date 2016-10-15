@@ -18,7 +18,7 @@ class GoogleMapsProcessor(object):
 		for token in search_tokens:
 			query_result = self.google_places.nearby_search(
 		        lat_lng=latlng, keyword=token,
-		        radius=20000, types=[
+		        radius=10000, types=[
 		        types.TYPE_AMUSEMENT_PARK,
 		        types.TYPE_BAKERY,
 		        types.TYPE_BAR,
@@ -60,9 +60,10 @@ class GoogleMapsProcessor(object):
 			    cache['lat'] = float(place.geo_location.get('lat'))
 			    cache['lng'] = float(place.geo_location.get('lng'))
 			    cache['rating'] = place.rating
+			    cache['types'] = place.types
 
 			    for photo in place.photos:
-			    	photo.get(maxheight=500, maxwidth=500)
+			    	photo.get(maxheight=800, maxwidth=533)
 			    	cache['photo'] = photo.url
 			    	break;
 
