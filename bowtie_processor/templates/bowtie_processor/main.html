@@ -4,7 +4,9 @@
 <div class="container-fluid full-height">
     <div class="row row-height">
         <div class="col-md-7 content-left">
-        
+            <div class="row">
+                <h4>Search results for {{ word }}</h4>
+            </div>
 
             {% for entry in stores %}
                 <div class="col-md-6 col-sm-6">
@@ -17,8 +19,7 @@
                                 <img src="{% static 'img/not_available.jpg' %}" width="800" height="533" class="img-responsive" alt="Image">
                             {% endif %}
                             <div class="short_info">
-                                <i class="icon_set_3_restaurant-2"></i> Fast food
-                                <!-- <span class="price"><sup>$</sup>45</span> -->
+                                {{entry.types}}
                             </div>
                             </a>
                         </div>
@@ -30,6 +31,9 @@
                             <div class="rating">
                                 Rating: {{entry.rating}}/5
                             </div><!-- end rating -->
+                            <div>
+
+                            </div>
                             <div onclick="setCenter({{entry.lat}}, {{entry.lng}})" class="view_on_map">View on map</div>
                         </div>
                     </div><!-- End box tour -->
@@ -221,7 +225,7 @@
             lng : newLng
         });
 
-        map.setZoom(16);
+        map.setZoom(20);
     }
 
     

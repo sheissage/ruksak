@@ -34,7 +34,8 @@ def process(request):
 
 		
 		data = {
-			'stores': response
+			'stores': response,
+			'word': classified_image[0].get('word')
 		}
 
 		if response:
@@ -54,7 +55,7 @@ def process_text(request):
 		word = translate.translate(term)
 
 		if not word:
-			return HttpResponseNotFound('<h1>Language not Supported</h1>')
+			word = term 
 		
 		maps = GoogleMapsProcessor()
 		response = maps.search(
@@ -63,7 +64,8 @@ def process_text(request):
 			)
 
 		data = {
-			'stores': response
+			'stores': response,
+			'word': term
 		}
 
 		if response:

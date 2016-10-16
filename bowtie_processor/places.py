@@ -60,7 +60,7 @@ class GoogleMapsProcessor(object):
 			    cache['lat'] = float(place.geo_location.get('lat'))
 			    cache['lng'] = float(place.geo_location.get('lng'))
 			    cache['rating'] = place.rating
-			    cache['types'] = place.types
+			    cache['types'] = place.types[0] if len(place.types) > 0 else 'Others'
 
 			    for photo in place.photos:
 			    	photo.get(maxheight=800, maxwidth=533)
