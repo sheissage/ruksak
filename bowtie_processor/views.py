@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from bowtie_processor.processor import Processor
 from bowtie_processor.places import GoogleMapsProcessor
 from bowtie_processor.translate import GoogleTranslateProcessor
+from bowtie_processor.expedia import ExpediaProcessor
 # Create your views here.
 
 def index(request):
@@ -28,9 +29,13 @@ def process(request):
 		maps = GoogleMapsProcessor()
 		response = {}
 
-		response = maps.search(classified_image[0].get('word'), 
-			{'lat':latitude, 'lng':longitude}
-			)
+		try:
+
+			response = maps.search(classified_image[0].get('word'), 
+				{'lat':latitude, 'lng':longitude}
+				)
+		except:
+			return HttpResponseNotFound('<h1>Please allow locations!</h1>')
 
 		
 		data = {
@@ -58,10 +63,14 @@ def process_text(request):
 			word = term 
 		
 		maps = GoogleMapsProcessor()
-		response = maps.search(
-			word, 
-			{'lat':latitude, 'lng':longitude}
-			)
+
+		try:
+			response = maps.search(
+				word, 
+				{'lat':latitude, 'lng':longitude}
+				)
+		except:
+			return HttpResponseNotFound('<h1>Please allow locations!</h1>')
 
 		data = {
 			'stores': response,
@@ -80,9 +89,18 @@ def process_details(request, place_id):
 		maps = GoogleMapsProcessor()
 		details = maps.get_place(place_id)
 
+		expedia = ExpediaProcessor()
+		results = expedia.search(details.get('lat'), details.get('lng'))
+		
+
+		for result in results:
+			print result
+			print '--------------------'
 		data = {
-			'store': details
+			'store': details,
+			'recommendations': results
 		}
+
 		return render(request, 'bowtie_processor/details.html', data)
 	else:
 		return HttpResponseNotFound('<h1>Page not found</h1>')

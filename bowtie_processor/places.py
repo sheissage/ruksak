@@ -74,6 +74,43 @@ class GoogleMapsProcessor(object):
 		"""
 		Search Expedia Hotels
 		"""
+	def search_by_text(self, name, lat, lng):
+
+		latlng = {'lat':lat, 'lng':lng}
+
+		query_result = self.google_places.text_search(
+		        lat_lng=latlng, query=name,
+		        radius=10, types=[
+		        types.TYPE_AMUSEMENT_PARK,
+		        types.TYPE_BAKERY,
+		        types.TYPE_BAR,
+		        types.TYPE_BOOK_STORE,
+		        types.TYPE_CAFE,
+		        types.TYPE_CLOTHING_STORE,
+		        types.TYPE_CONVENIENCE_STORE,
+		        types.TYPE_DEPARTMENT_STORE,
+		        types.TYPE_FOOD,
+		        types.TYPE_GROCERY_OR_SUPERMARKET,
+		        types.TYPE_HARDWARE_STORE,
+		        types.TYPE_HEALTH,
+		        types.TYPE_HOME_GOODS_STORE,
+		        types.TYPE_LIBRARY,
+		        types.TYPE_LIQUOR_STORE,
+		        types.TYPE_MEAL_DELIVERY,
+		        types.TYPE_MEAL_TAKEAWAY,
+		        types.TYPE_MOVIE_THEATER,
+		        types.TYPE_MUSEUM,
+		        types.TYPE_NIGHT_CLUB,
+		        types.TYPE_PARK,
+		        types.TYPE_PHARMACY,
+		        types.TYPE_RESTAURANT,
+		        types.TYPE_SHOE_STORE,
+		        types.TYPE_SHOPPING_MALL,
+		        types.TYPE_STORE,
+
+		        ])
+
+		return query_result
 
 	def get_place(self, place_id):
 
