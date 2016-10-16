@@ -75,7 +75,54 @@ class GoogleMapsProcessor(object):
 		Search Expedia Hotels
 		"""
 
+	def get_place(self, place_id):
 
+		place = self.google_places.get_place(place_id)
+		cache = {}
+		place.get_details()
+		details = place.details
+		detail_keys = details.keys()
+
+		# Get Reviews
+		cache['reviews'] = []
+		if 'reviews' in detail_keys:
+			result = []
+			for review in details['reviews']:
+				cache = {}
+				cache['rating'] = review.get('rating')
+				cache['rating_range'] = range(int(review.get('rating'))) if review.get('rating') else 0
+				cache['photo'] = review.get('profile_photo_url')
+				cache['text'] = review.get('text')
+				cache['name'] = review.get('author_name')
+				cache['time'] = review.get('time')
+				result.append(cache)
+
+			cache['reviews'] = result
+		cache['review_count'] = len(cache['reviews'])
+		cache['id'] = place.place_id
+		cache['name'] = place.name
+		cache['address'] = place.formatted_address
+		cache['website'] = place.website
+		cache['phone'] = place.local_phone_number
+		cache['vicinity'] = place.vicinity
+		cache['lat'] = float(place.geo_location.get('lat'))
+		cache['lng'] = float(place.geo_location.get('lng'))
+		cache['rating'] = place.rating
+		cache['rating_range'] = range(int(place.rating)) if place.rating else 0
+		cache['types'] = place.types[0] if len(place.types) > 0 else 'Others'
+		cache['photos'] = []
+
+		for photo in place.photos:
+			photo.get(maxheight=1400, maxwidth=470)
+			cache['banner'] = photo.url
+			break
+
+		for photo in place.photos:
+
+			photo.get(maxheight=800, maxwidth=533)
+			cache['photos'].append(photo.url)
+		
+		return cache
 		
 
 

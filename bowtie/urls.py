@@ -24,5 +24,6 @@ urlpatterns = [
 	url(r'^$', processor.index, name='main'),
 	url(r'^process/$', processor.process, name='process'),
 	url(r'^process_text/$', processor.process_text, name='process_text'),
+	url(r'^details/(?P<place_id>[a-zA-Z0-9_-]+)$', processor.process_details, name='details'),
     url(r'^admin/', admin.site.urls)
 ]

@@ -19,22 +19,27 @@
 
     <!-- CSS -->
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/slider-pro.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/date_time_picker.css' %}" rel="stylesheet">
     
     <!-- Google web fonts -->
    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
    <link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
         
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-     <!-- Map -->
+  
+     <!-- JS -->
+     <script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+     <script src="{% static 'js/icheck.js' %}"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBJ2G9CadzNbX_DV8uuuY2GE-7yq0rENPk&libraries=places"></script>
+    <script type="text/javascript" src="//media.twiliocdn.com/sdk/js/client/v1.3/twilio.min.js"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'js/bootstrap-timepicker.js' %}"></script>
+
     <style>html, body {height: 100%;}</style>
         
 </head>
-<body onload="getLocation()">
+<body>
 
 <!--[if lte IE 8]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
@@ -138,9 +143,11 @@
 
  
  <!-- Common scripts -->
-<script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+<script src="{% static 'js/jquery.sliderPro.min.js' %}"></script>
+<script src="{% static 'assets/validate.js' %}"></script>
 <script src="{% static 'js/common_scripts_min.js' %}"></script>
 <script src="{% static 'js/functions.js' %}"></script>
+
 <!-- <script src="{% static 'js/map_listing_restaurants.js' %}"></script> -->
 <script src="{% static 'js/infobox.js' %}"></script>
 

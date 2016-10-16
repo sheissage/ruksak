@@ -74,3 +74,15 @@ def process_text(request):
 			return HttpResponse(400)
 	else:
 		return HttpResponseNotFound('<h1>Page not found</h1>')
+
+def process_details(request, place_id):
+	if request.method == 'GET':
+		maps = GoogleMapsProcessor()
+		details = maps.get_place(place_id)
+
+		data = {
+			'store': details
+		}
+		return render(request, 'bowtie_processor/details.html', data)
+	else:
+		return HttpResponseNotFound('<h1>Page not found</h1>')
