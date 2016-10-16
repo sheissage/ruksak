@@ -156,14 +156,15 @@
                             <img alt="Image" class="sp-image" src="{% static 'css/images/blank.gif' %}" 
                             data-src="{{photo}}">
                         </div>
+                        
                     {% endfor %}
-
                 </div>
+                <div class="sp-thumbnails">
                 {% for photo in store.photos %}
-                    <div class="sp-thumbnails">
-                        <img alt="Image" class="sp-thumbnail" src="{{photo}}">
-                    </div>
+                    <img alt="Image" class="sp-thumbnail" src="{{photo}}">
                 {% endfor %}
+                </div>
+                
                 
             </div>
             

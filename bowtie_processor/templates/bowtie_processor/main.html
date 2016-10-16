@@ -5,11 +5,13 @@
     <div class="row row-height">
         <div class="col-md-7 content-left">
             <div class="row">
-                <h4>Search results for {{ word }}</h4>
+                {% if stores%}
+                    <h4>Search results for {{ word }}</h4>
+                {% endif %}
             </div>
 
             {% for entry in stores %}
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-7">
                     <div class="tour_container">
                         <div class="img_container">
                             <a href="single_restaurant.html">
