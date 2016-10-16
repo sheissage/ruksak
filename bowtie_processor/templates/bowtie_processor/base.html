@@ -30,7 +30,6 @@
   
      <!-- JS -->
      <script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
-     <script src="{% static 'js/icheck.js' %}"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBJ2G9CadzNbX_DV8uuuY2GE-7yq0rENPk&libraries=places"></script>
     <script type="text/javascript" src="//media.twiliocdn.com/sdk/js/client/v1.3/twilio.min.js"></script>
     <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
@@ -39,7 +38,7 @@
     <style>html, body {height: 100%;}</style>
         
 </head>
-<body>
+<body onload="getLocation()">
 
 <!--[if lte IE 8]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
@@ -147,7 +146,7 @@
 <script src="{% static 'assets/validate.js' %}"></script>
 <script src="{% static 'js/common_scripts_min.js' %}"></script>
 <script src="{% static 'js/functions.js' %}"></script>
-
+<script src="{% static 'js/icheck.js' %}"></script>
 <!-- <script src="{% static 'js/map_listing_restaurants.js' %}"></script> -->
 <script src="{% static 'js/infobox.js' %}"></script>
 
