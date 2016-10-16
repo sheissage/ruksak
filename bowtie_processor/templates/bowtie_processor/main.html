@@ -30,7 +30,7 @@
                             <div class="rating">
                                 Rating: {{entry.rating}}/5
                             </div><!-- end rating -->
-                            <div onclick="onHtmlClick('Fastfood', 0)" class="view_on_map">View on map</div>
+                            <div onclick="setCenter({{entry.lat}}, {{entry.lng}})" class="view_on_map">View on map</div>
                         </div>
                     </div><!-- End box tour -->
                 </div>
@@ -215,8 +215,13 @@
         
     }
 
-    function setCenter() {
-        
+    function setCenter(newLat, newLng) {
+        map.setCenter({
+            lat : newLat,
+            lng : newLng
+        });
+
+        map.setZoom(16);
     }
 
     
