@@ -92,10 +92,6 @@ def process_details(request, place_id):
 		expedia = ExpediaProcessor()
 		results = expedia.search(details.get('lat'), details.get('lng'))
 		
-
-		for result in results:
-			print result
-			print '--------------------'
 		data = {
 			'store': details,
 			'recommendations': results

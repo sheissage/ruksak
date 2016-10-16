@@ -26,6 +26,7 @@ class ExpediaProcessor(object):
 			cache['name'] = name
 			cache['lat'] = latitude
 			cache['lng'] = longitude
+			cache['maps'] = "http://maps.google.com/maps?z=12&t=m&q=loc:{0}+{1}".format(longitude, latitude)
 
 			response.append(cache)
 

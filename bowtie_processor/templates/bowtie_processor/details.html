@@ -243,259 +243,38 @@
 <div id="overlay"></div><!-- Mask on input focus -->  
 
 <!-- Modal Review -->
-<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myReviewLabel">Write your review</h4>
-			</div>
-			<div class="modal-body">
-				<div id="message-review">
-				</div>
-				<form method="post" action="assets/review_restaurant.php" name="review_restaurant" id="review_restaurant">
-                <input name="restaurant_name" id="restaurant_name" type="hidden" value="Mexican Taco Mex">	
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<input name="name_review" id="name_review" type="text" placeholder="Your name" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<input name="lastname_review" id="lastname_review" type="text" placeholder="Your last name" class="form-control">
-							</div>
-						</div>
-					</div>
-					<!-- End row -->
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<input name="email_review" id="email_review" type="email" placeholder="Your email" class="form-control">
-							</div>
-						</div>
-					</div>
-					<!-- End row -->
-					<hr>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Position</label>
-								<select class="form-control" name="position_review" id="position_review">
-									<option value="">Please review</option>
-									<option value="Low">Low</option>
-									<option value="Sufficient">Sufficient</option>
-									<option value="Good">Good</option>
-									<option value="Excellent">Excellent</option>
-									<option value="Superb">Super</option>
-									<option value="Not rated">I don't know</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Service</label>
-								<select class="form-control" name="service_review" id="service_review">
-									<option value="">Please review</option>
-									<option value="Low">Low</option>
-									<option value="Sufficient">Sufficient</option>
-									<option value="Good">Good</option>
-									<option value="Excellent">Excellent</option>
-									<option value="Superb">Super</option>
-									<option value="Not rated">I don't know</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<!-- End row -->
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Price</label>
-								<select class="form-control" name="price_review" id="price_review">
-									<option value="">Please review</option>
-									<option value="Low">Low</option>
-									<option value="Sufficient">Sufficient</option>
-									<option value="Good">Good</option>
-									<option value="Excellent">Excellent</option>
-									<option value="Superb">Super</option>
-									<option value="Not rated">I don't know</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Quality</label>
-								<select class="form-control" name="quality_review" id="quality_review">
-									<option value="">Please review</option>
-									<option value="Low">Low</option>
-									<option value="Sufficient">Sufficient</option>
-									<option value="Good">Good</option>
-									<option value="Excellent">Excellent</option>
-									<option value="Superb">Super</option>
-									<option value="Not rated">I don't know</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<!-- End row -->
-					<div class="form-group">
-						<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="Write your review"></textarea>
-					</div>
-					<div class="form-group">
-						<input type="text" id="verify_review" class=" form-control" placeholder="Are you human? 3 + 1 =">
-					</div>
-					<input type="submit" value="Submit" class="btn_1" id="submit-review">
-				</form>
-			</div>
-		</div>
-	</div>
-</div><!-- End modal review -->
 
 <hr>
 
 <!-- Hotel listings -->
 
-<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hotels Nearby</h3>
-<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-                   <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="wishlist">
-                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-              </div>      
-                        <div class="img_list"><a href="single_hotel.html"><div class="ribbon top_rated" ></div><img src="{% static 'img/hotel_2.jpg' %}" alt="Image">
-                        <div class="short_info"></div>
-                        </a>
-                        </div>
-                    </div>
-                     <div class="clearfix visible-xs-block"></div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="tour_list_desc">
-                            <div class="score">Superb<span>9.0</span></div>
-                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i></div>
-                            <h3><strong>Mariott</strong> Hotel</h3>
-                            <p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-                            <ul class="add_info">
-                                <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-                               </li>
-                               <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-                               </li>
-                                <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-                               </li>
-                               <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-                               </li>
-                               <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-                               </li>
-                            </ul>
+<h3>Still not tired? Crash at ...</h3>
+<!--End strip -->
+    <div class="row">
+        <div class="col-md-12">
+            {% for place in recommendations %}
+                <div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
+                    <div class="hotel_container">
+                        <div class="img_container">
+                            <a href="single_hotel.html">
+                            <img src="img/hotel_1.jpg" width="800" height="533" class="img-responsive" alt="Image">
+                            <div class="score"><span></span></div>
+                            <div class="short_info hotel">Go see ...
                             </div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
-                        <div class="price_list"><div><sup>$</sup>39*<span class="normal_price_list">$99</span><small >*From/Per night</small>
-                        <p><a href="single_hotel.html" class="btn_1">Details</a></p>
+                            </a>
                         </div>
+                        <div class="hotel_title">
+                            <h3><strong> {{ place.name }}</strong></h3>
+                            <div class="rating">
+                                <a href="{{place.maps}}">View on Maps</a>
+                            </div><!-- end rating -->
                         </div>
-                    </div>
-                    </div>
-</div><!--End strip -->
-                
-                <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-                   <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="wishlist">
-                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-              </div>      
-                        <div class="img_list"><a href="single_hotel.html"><div class="ribbon top_rated" ></div><img src="{% static 'img/hotel_3.jpg' %}" alt="Image">
-                        <div class="short_info"></div>
-                        </a>
-                        </div>
-                    </div>
-                     <div class="clearfix visible-xs-block"></div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="tour_list_desc">
-                            <div class="score">Superb<span>9.0</span></div>
-                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i></div>
-                            <h3><strong>Lumiere</strong> Hotel</h3>
-                            <p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-                            <ul class="add_info">
-                                <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-                               </li>
-                               <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-                               </li>
-                                <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-                               </li>
-                               <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-                               </li>
-                               <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-                               </li>
-                            </ul>
-                            </div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
-                        <div class="price_list"><div><sup>$</sup>129*<span class="normal_price_list">$99</span><small >*From/Per night</small>
-                        <p><a href="single_hotel.html" class="btn_1">Details</a></p>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--End strip -->
-                
-                <div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-                   <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="wishlist">
-                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-              </div>      
-                        <div class="img_list"><a href="single_hotel.html"><div class="ribbon top_rated" ></div><img src="{% static 'img/hotel_4.jpg' %}" alt="Image">
-                        <div class="short_info"></div>
-                        </a>
-                        </div>
-                    </div>
-                     <div class="clearfix visible-xs-block"></div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="tour_list_desc">
-                            <div class="score">Good<span>7.5</span></div>
-                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i></div>
-                            <h3><strong>Concorde</strong> Hotel</h3>
-                            <p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-                            <ul class="add_info">
-                                <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-                               </li>
-                               <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-                               </li>
-                                <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-                               </li>
-                               <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-                               </li>
-                               <li>
-                                     <a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-                               </li>
-                            </ul>
-                            </div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
-                        <div class="price_list"><div><sup>$</sup>119*<span class="normal_price_list">$99</span><small >*From/Per night</small>
-                        <p><a href="{% static 'single_hotel.html' %}" class="btn_1">Details</a></p>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--End strip -->
+                    </div><!-- End box tour -->
+                </div><!-- End col-md-4 -->
+            {% endfor %}
 
-
+        </div>
+    </div>
  <!-- Common scripts -->
 <script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
 <script src="{% static 'js/common_scripts_min.js' %}"></script>
