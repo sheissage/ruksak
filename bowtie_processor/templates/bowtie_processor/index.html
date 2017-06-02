@@ -1,6 +1,5 @@
 <html>
 	<body onload="getLocation()">
-		<h1>Hello World!</h1>
 		<form action="/process/" method="POST" enctype="multipart/form-data">
 	  		{% csrf_token%}
 		  	<input type="file" name="raw_image" accept="image/*"><br>
