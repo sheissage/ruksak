@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
+    <meta name="description" content="Citytours">
     <meta name="author" content="Ansonika">
-    <title>RUKSAK - More than Travels</title>
+    <title>BRTHRLY - An Intuitive and Multilanguage City Guides For Muslims</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <!-- Favicons-->
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
@@ -41,8 +41,8 @@
             width: 100%;
             box-sizing: border-box;
             border: 2px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
+            border-radius: 3px;
+            font-size: 12px;
             background-color: white;
             background-position: 8px 8px;
             background-repeat: no-repeat;
@@ -87,7 +87,7 @@
         <div id="top_line">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6"><i class="tagline"></i><strong>RUKSAK - More than Travels</strong></div>
+                    <div class="col-md-6 col-sm-6 col-xs-6"><i class="tagline"></i><strong>BRTHRLY - An Intuitive and Multilanguage City Guide For Muslims</strong></div>
                                 </div><!-- End Dropdown access -->
                             </li>
                         </ul>
@@ -100,7 +100,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-3 col-xs-3">
                      <div id="title">
-                        <h1><a href="#" title="City tours travel template">RUKSAK</a></h1>
+                        <h1><a href="#" title="City tours travel template">BRTHRLY</a></h1>
                     </div>
                 </div>
                 <nav class="col-md-9 col-sm-9 col-xs-9">
@@ -116,14 +116,14 @@
                         <li>        
                             <form action="/process_text/" id="text_search" method="POST">
                                 {% csrf_token%}
-                                <input type="text" id="input_text_search" name="search" placeholder="Search here"><br>
+                                <input type="text" id="input_text_search" name="search" placeholder="Search Here"><br>
                                 <input type="hidden" id="lat_text" name="lat">
                                 <input type="hidden" id="lng_text" name="lng">
                             </form>
                         </li>
                         <li>
                             <div class="dropdown dropdown-cart">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-camera-1"></i>Take a Photo</a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-camera-1"></i>Upload Photo</a>
                                 <ul class="dropdown-menu">
                                     <form action="/process/" method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
